@@ -1,4 +1,6 @@
-function init_code_hierarchy_plot(elementId, data, countFunction, colorFunction, title, legendFunction){
+// Hi Cheese Lovers! The D3 code below was adapted from the awesomeness at http://bl.ocks.org/adewes/4710330
+
+function createCheeseWheel(elementId, data, countFunction, colorFunction, title, legendFunction){
   var plot = document.getElementById(elementId);
 
   while (plot.hasChildNodes()){
@@ -132,78 +134,65 @@ function init_code_hierarchy_plot(elementId, data, countFunction, colorFunction,
     if (animating){
       return;
     };
-  animating = true;
-  var revert = false;
-  var new_ref;
-  if (d == ref && last_refs.length > 0)
-        {
-            revert = true;
-            last_ref = last_refs.pop();
-        }
-        if (revert)
-        {
-            d = last_ref;
-            new_ref = ref;
-            svg.selectAll(".form")
-            .filter(
-                function (b)
-                {
-                    if (b[0] >= last_ref[0] && b[1] <= last_ref[1]  && b[3] >= last_ref[3])
-                    {
-                        return true;
-                    }
-                    return false;
-                }
-            )
-            .transition().duration(1000).style("opacity","1").attr("pointer-events","all");
-        }
-        else
-        {
-            new_ref = d;
-            svg.selectAll(".form")
-            .filter(
-                function (b)
-                {
-                    if (b[0] < d[0] || b[1] > d[1] || b[3] < d[3])
-                    {
-                        return true;
-                    }
-                    return false;
-                }
-            )
-            .transition().duration(1000).style("opacity","0").attr("pointer-events","none");
-        }
-        svg.selectAll(".form")
+
+    animating = true;
+    var revert = false;
+    var new_ref;
+    
+    if (d == ref && last_refs.length > 0) {
+      revert = true;
+      last_ref = last_refs.pop();
+    }
+    
+    if (revert) {
+      d = last_ref;
+      new_ref = ref;
+      svg.selectAll(".form")
         .filter(
-            function (b)
-            {
-                if (b[0] >= new_ref[0] && b[1] <= new_ref[1] && b[3] >= new_ref[3])
-                {
-                    return true;
-                }
-                return false;
+          function(b){
+            if (b[0] >= last_ref[0] && b[1] <= last_ref[1]  && b[3] >= last_ref[3]){
+              return true;          
             }
-        )
-        .transition().duration(1000).attrTween("d",rebaseTween(d));
-        setTimeout(function(){
-            animating = false;
-            if (! revert)
-            {
-                last_refs.push(ref);
-                ref = d;
+            return false;
+          })
+        .transition().duration(1000).style("opacity","1").attr("pointer-events","all");
+    } else {
+      new_ref = d;
+      svg.selectAll(".form")
+       .filter(
+          function(b){
+            if (b[0] < d[0] || b[1] > d[1] || b[3] < d[3]){
+              return true;
             }
-            else
-            {
-                ref = d;
-            }
-            },1000);
-    };    
+            return false;
+          })
+      .transition().duration(1000).style("opacity","0").attr("pointer-events","none");
+    }
+    
+    svg.selectAll(".form")
+      .filter(
+        function (b){
+          if (b[0] >= new_ref[0] && b[1] <= new_ref[1] && b[3] >= new_ref[3]){
+            return true;
+          }
+          return false;
+        })
+      .transition().duration(1000).attrTween("d",rebaseTween(d));
+    
+    setTimeout(function(){
+      animating = false;
+        if (! revert){
+          last_refs.push(ref);
+          ref = d;
+        } else {
+          ref = d;
+        }
+    }, 1000);
+  };    
+};
 
-}
 
-
-
-function init_plots(){
+function initCheeseWheel(){
   // debugger
   function countFunction(d){
     return d[1][0];
@@ -224,12 +213,12 @@ function init_plots(){
   }
   
   d3.select(self.frameElement).style("height", "800px");
-  init_code_hierarchy_plot("cheese_wheel",cheese_hierarchy,countFunction,colorFunction,label_function,legendFunction);
+  createCheeseWheel("cheese_wheel",cheese_hierarchy,countFunction,colorFunction,label_function,legendFunction);
 };
 
-// window.onload = init_plots;
+// window.onload = initCheeseWheel;
 
-// window.onresize = init_plots;
+// window.onresize = initCheeseWheel;
 
 
 

@@ -1,4 +1,4 @@
 $(function(){
   setCheeseHierarchy();
-  window.onresize = init_plots;
+  window.onresize = initCheeseWheel;
 });

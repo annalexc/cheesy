@@ -88,7 +88,7 @@ function setCheeseHierarchy(){
         getData('/api/cheeses/getdistinct/country', function(countries){
           cheeseCountries = countries;
           // Parse Cheese Data!
-          parseCheeseData(cheeseData, cheeseMilkSources, cheeseTypes, cheeseCountries, init_plots);
+          parseCheeseData(cheeseData, cheeseMilkSources, cheeseTypes, cheeseCountries, initCheeseWheel);
           
         });         
       
