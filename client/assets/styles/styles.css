@@ -1,0 +1,75 @@
+* {
+  box-sizing: content-box;
+}
+
+html, body {
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
+}
+html {
+  font-family: Futura, Arial, Helvetica;
+  font-size:1em;
+}
+
+body { 
+  padding:10px; 
+  background-color: blanchedalmond;
+}
+
+#site-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+#search-pane, #view-pane {
+  float: left;
+  height: 100%;
+}
+
+
+#search-pane {
+  width: 40%;
+  max-height: 100vh;
+}
+
+#view-pane {
+  width: 60%;
+  /*padding: 1%;*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-height: 100vh;
+}
+
+
+h2, p {
+  font-size: 1.1rem;
+  color: tomato;
+}
+
+
+#title {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 0;
+
+}
+
+#cheese_wheel {
+  position: relative;
+  width: 60%;
+  margin: 0 auto;
+}
+
+#cheese_wheel_legend {
+  margin: 0 auto;
+  height: 100px;
+  font-size: 1.4em;
+  text-align: center;
+}

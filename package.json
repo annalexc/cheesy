@@ -1,0 +1,20 @@
+{
+  "name": "cheesy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "mongo-migrate": "^0.1.0",
+    "mongoose": "^4.4.19",
+    "morgan": "^1.7.0",
+    "nodemon": "^1.9.2",
+    "path": "^0.12.7"
+  }
+}

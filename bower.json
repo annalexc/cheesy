@@ -1,0 +1,20 @@
+{
+  "name": "cheesy",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "Anna Concepcion <anna.concepcion@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/annalexc/cheesy",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "d3": "^3.5.17"
+  }
+}
