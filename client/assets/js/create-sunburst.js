@@ -1,5 +1,9 @@
 // Hi Cheese Lovers! The D3 code below was adapted from the awesomeness at http://bl.ocks.org/adewes/4710330
 
+
+// Inspect dataSlices to determine why few are missing per set of children.
+var dataSlices; 
+
 function createCheeseWheel(elementId, data, countFunction, colorFunction, title, legendFunction){
   var plot = document.getElementById(elementId);
 
@@ -8,12 +12,12 @@ function createCheeseWheel(elementId, data, countFunction, colorFunction, title,
   }
 
   var width = plot.offsetWidth;
-  var height = width;
+  var height = width+20;
   var x_margin = 40;
-  var y_margin = 40;  
-  var max_depth= 4;    
+  var y_margin = 50;  
+  var max_depth= 3;    
   var data_slices = [];
-  var max_level = 3;
+  var max_level = 4;
 
   var svg = d3.select("#"+elementId).append("svg")
     .attr("width", width)
@@ -35,6 +39,12 @@ function createCheeseWheel(elementId, data, countFunction, colorFunction, title,
     };
     data_slices.push([start_deg,stop_deg,name,level,data[1]]);
     for (var key in children){
+      
+  
+      // if(key == "Coalho"){
+      //   debugger
+      // }
+
       // console.log(key);
       child = children[key];
       var inc_deg = (stop_deg-start_deg)/total*countFunction(child);
@@ -46,7 +56,10 @@ function createCheeseWheel(elementId, data, countFunction, colorFunction, title,
     };
   };
     
-  process_data(data,0,0,360./180.0*Math.PI);
+  // process_data(data,0,0,360.0/180.0*Math.PI);
+
+  // Tactical(?) fix to show missing slices with stop degrees that are past the parent stop degrees:
+  process_data(data,0,0,360.0/180.05*Math.PI);
 
   var ref = data_slices[0];
   var next_ref = ref;
@@ -59,16 +72,29 @@ function createCheeseWheel(elementId, data, countFunction, colorFunction, title,
     .innerRadius(function(d) { return 1.1*d[3]*thickness; })
     .outerRadius(function(d) { return (1.1*d[3]+1)*thickness; });    
 
+  dataSlices = data_slices;
+
   var slices = svg.selectAll(".form")
     .data(function(d) { return data_slices; })
     .enter()
     .append("g");
-    slices.append("path")
+  slices.append("a")
+  var link = svg.selectAll("a")
+    .attr("xlink:href", function(d){return '#/'+ parseLink(d[2]);})
+    // .attr("xlink:href", "http://www.vxnofficial.com")
+    .append("path")
     .attr("d", arc)
     .attr("id",function(d,i){return elementId+i;})
+      // .attr("data",function(d){return d[2];})
     .style("fill", function(d) { return colorFunction(d);})
+    // .style("cursor", function(d){ return "pointer";})
     .attr("class","form");
-  slices.on("click",animate);
+  slices.on("click",function(d) {
+    animate(d);
+    console.log(d3.select(this));
+  });
+  // slices.on("click",showCheese);  
+
 
   if (title != undefined){
     slices.append("svg:title")
@@ -131,10 +157,11 @@ function createCheeseWheel(elementId, data, countFunction, colorFunction, title,
   var animating = false;
     
   function animate(d) {
+
+    // debugger
     if (animating){
       return;
     };
-
     animating = true;
     var revert = false;
     var new_ref;
@@ -188,7 +215,23 @@ function createCheeseWheel(elementId, data, countFunction, colorFunction, title,
           ref = d;
         }
     }, 1000);
-  };    
+
+
+    // var textArray = d3.select(this.parentNode).select("text");
+    // console.log(d[2]);
+
+  };
+
+  function parseLink(string){
+    var str = $.parseHTML(string);
+    if(str[0]){
+      var source = $(str[0]).text();
+      source = source.toLowerCase();
+      link = source;
+      return link;
+    }      
+  }
+
 };
 
 
@@ -203,7 +246,7 @@ function initCheeseWheel(){
   };
     
   function legendFunction(d){
-    return "<span>"+d[2]+ "</span><p>"+d[4][0]+" cheeses</p>";
+    return "<h1>"+d[2]+ "</h1><p>"+d[4][0]+" cheese(s)</p>";
   };
     
   var color = d3.scale.category20b();
@@ -215,19 +258,3 @@ function initCheeseWheel(){
   d3.select(self.frameElement).style("height", "800px");
   createCheeseWheel("cheese_wheel",cheese_hierarchy,countFunction,colorFunction,label_function,legendFunction);
 };
-
-// window.onload = initCheeseWheel;
-
-// window.onresize = initCheeseWheel;
-
-
-
-
-
-
-
-
-// $(function(){
-//   windowsetCheeseHierarchy();
-//   window
-// })

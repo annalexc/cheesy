@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Set static file root folders
-app.use(express.static('client/assets'));
+app.use(express.static('client'));
 app.use(express.static('bower_components'));
 
 

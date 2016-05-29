@@ -1,0 +1,16 @@
+<div id="cheese-view">
+  <div id="list-description">
+    <p id="section-title">Currently Viewing</p>
+    <span ng-if="!source">
+      All Cheeses
+    </span>
+    <span ng-if="source">
+      Milk Source: {{ source }}
+    </span>
+  </div>
+  <ul>
+    <li ng-repeat="cheese in cheeses">
+      <a href='#/{{cheese.name}}'>{{ cheese.name }}</a>
+    </li>
+  </ul>
+</div>

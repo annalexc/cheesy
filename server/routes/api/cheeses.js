@@ -55,7 +55,16 @@ router.get('/search', function(req, res, next){
         res.json(response);
       }
     })
+  } else if ( source ){
+    Cheese.find({milk_source: source}, function(err, response){
+      if (err) {
+        res.status(404).end();
+      }else {
+        res.json(response);
+      }
+    })
   }
+
 });
 
 

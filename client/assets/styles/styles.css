@@ -1,3 +1,9 @@
+@import url(https://fonts.googleapis.com/css?family=Bree+Serif);
+@font-face {
+  font-family: 'Ostrich Sans Bold';
+  src: url('../fonts/OstrichSans-Bold.otf');
+}
+
 * {
   box-sizing: content-box;
 }
@@ -7,18 +13,64 @@ html, body {
   height: 100%;
   width: 100%;
 }
-html {
-  font-family: Futura, Arial, Helvetica;
-  font-size:1em;
-}
 
 body { 
-  padding:10px; 
-  background-color: blanchedalmond;
+  font: 1rem 'Bree Serif';
+  transition: all 0.5s ease-in-out;
+}
+
+#title {
+  font-family: 'Ostrich Sans Bold';
+  position: relative;
+  width: 100%;
+  height: 100%;
+  float: left;
+  font-size: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -100%;
+  
+}
+
+#section-title {
+  font: 1.7rem 'Ostrich Sans Bold';
+}
+
+#title-text{
+  text-align: center;
+  border-radius: 50%;
+  line-height: 1;
+  border: 7px solid black;
+  padding: 7% 5%;
+  animation: spinIn 1.25s linear;
+  background:
+  repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 25%,
+    rgba(254,191,86,0.3) 0,
+    rgba(254,191,86,0.3) 50%
+  ),
+  repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 25%,
+    rgba(255,239,153,0.4) 0,
+    rgba(255,239,153,0.4) 50%
+  ), white;
+  background-size: 1.85em 1.85em;
+  background-blend-mode: multiply;
+  background-attachment: fixed;
+}
+
+
+.carat {
+  color: tomato;
 }
 
 #site-wrapper {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -46,30 +98,95 @@ body {
   max-height: 100vh;
 }
 
+h1{ 
+  margin: 0 auto; 
+  font-size: 1.55rem;
+}
 
-h2, p {
-  font-size: 1.1rem;
+p {
+  font-size: 1.2rem;
+  margin: 0 auto;
   color: tomato;
 }
 
+a, a:visited {
+  color: black;
+  text-decoration: none;
+}
 
-#title {
-  position: absolute;
-  width: 100%;
-  text-align: center;
-  top: 0;
+ul{
+  padding: 0;
+}
 
+li {
+  list-style-type: none;
+}
+
+#cheese-list {
+  height: 90%;
+  overflow: scroll;
+  margin: 3% auto 7%;
+  padding-left: 5%;
+}
+
+#list-description{
+
+  
 }
 
 #cheese_wheel {
   position: relative;
-  width: 60%;
-  margin: 0 auto;
+  width: 70%;
+  margin: 20px auto 0 -20px;
 }
 
 #cheese_wheel_legend {
-  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  width: 90%;
+  margin: 10px auto 0;
   height: 100px;
-  font-size: 1.4em;
-  text-align: center;
+  text-align: left;
+}
+
+
+@-webkit-keyframes title {
+  0%{
+    margin-top: 0%;
+  }
+  50%{
+    margin-top: -50%;
+  }
+  100%{
+    margin-top: -100%;
+  }
+}
+
+
+
+
+@-webkit-keyframes spinIn {
+  0%{
+    margin-right: -150%;
+    -webkit-transform: rotate(180deg);
+  }
+
+  25%{
+    margin-right: -75%;
+    -webkit-transform: rotate(90deg);
+  }
+
+  60%{
+    margin-right: 0%;
+    -webkit-transform: rotate(0deg);
+  }
+
+  70%{
+    margin-right: 20%;
+    -webkit-transform: rotate(-25deg);
+  }
+  100%{
+    margin-right: 0%;
+    -webkit-transform: rotate(0deg);
+  }
 }
