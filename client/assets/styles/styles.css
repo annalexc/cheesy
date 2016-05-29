@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Bree+Serif);
+@import url(https://fonts.googleapis.com/css?family=Oswald);
 @font-face {
   font-family: 'Ostrich Sans Bold';
   src: url('../fonts/OstrichSans-Bold.otf');
@@ -33,9 +34,6 @@ body {
   
 }
 
-#section-title {
-  font: 1.7rem 'Ostrich Sans Bold';
-}
 
 #title-text{
   text-align: center;
@@ -65,6 +63,7 @@ body {
 }
 
 
+
 .carat {
   color: tomato;
 }
@@ -87,6 +86,19 @@ body {
 #search-pane {
   width: 40%;
   max-height: 100vh;
+}
+
+#section-title {
+  font: 1.9rem 'Ostrich Sans Bold';
+}
+
+#list-description {
+  padding-bottom: 5px;
+  border-bottom: 3px solid rgba(0,0,0,0.5);
+}
+
+#list-description span{
+  font: 1.4rem 'Oswald';
 }
 
 #view-pane {
@@ -126,12 +138,7 @@ li {
   height: 90%;
   overflow: scroll;
   margin: 3% auto 7%;
-  padding-left: 5%;
-}
-
-#list-description{
-
-  
+  padding: 0 5%;
 }
 
 #cheese_wheel {

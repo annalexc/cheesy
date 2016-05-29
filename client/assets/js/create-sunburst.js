@@ -27,7 +27,6 @@ function createCheeseWheel(elementId, data, countFunction, colorFunction, title,
           
   function process_data(data,level,start_deg,stop_deg){
     var name = data[0];
-    // console.log(name);
     var total = countFunction(data);
     var children = data[2];
     var current_deg = start_deg;
@@ -57,9 +56,8 @@ function createCheeseWheel(elementId, data, countFunction, colorFunction, title,
   };
     
   // process_data(data,0,0,360.0/180.0*Math.PI);
-
   // Tactical(?) fix to show missing slices with stop degrees that are past the parent stop degrees:
-  process_data(data,0,0,360.0/180.05*Math.PI);
+  process_data(data,0,0,360.0/180.0502031*Math.PI);
 
   var ref = data_slices[0];
   var next_ref = ref;
@@ -81,19 +79,16 @@ function createCheeseWheel(elementId, data, countFunction, colorFunction, title,
   slices.append("a")
   var link = svg.selectAll("a")
     .attr("xlink:href", function(d){return '#/'+ parseLink(d[2]);})
-    // .attr("xlink:href", "http://www.vxnofficial.com")
     .append("path")
     .attr("d", arc)
     .attr("id",function(d,i){return elementId+i;})
-      // .attr("data",function(d){return d[2];})
     .style("fill", function(d) { return colorFunction(d);})
-    // .style("cursor", function(d){ return "pointer";})
     .attr("class","form");
   slices.on("click",function(d) {
     animate(d);
-    console.log(d3.select(this));
+    // console.log(d3.select(this));
   });
-  // slices.on("click",showCheese);  
+ 
 
 
   if (title != undefined){
@@ -223,13 +218,40 @@ function createCheeseWheel(elementId, data, countFunction, colorFunction, title,
   };
 
   function parseLink(string){
+    // Construct links to be appended to each slice in sunburst
+    // Links will be parsed in Angular router to query for specific cheese subsets
+
     var str = $.parseHTML(string);
-    if(str[0]){
+    // console.log(str);
+
+    if (str[0] && str[4] && str[8]) {
+      var source = $(str[0]).text();
+      source = source.toLowerCase(); 
+      
+      var type = $(str[4]).text();
+      type = type.toLowerCase();
+      
+      var country = $(str[8]).text();
+
+      link = source + "/" + type + "/" + country;
+      return link;
+
+    } else if(str[0] && str[4]) {
+      var source = $(str[0]).text();
+      source = source.toLowerCase(); 
+      
+      var type = $(str[4]).text();
+      type = type.toLowerCase();
+
+      link = source + "/" + type;
+      return link;
+
+    } else if(str[0]) {
       var source = $(str[0]).text();
       source = source.toLowerCase();
       link = source;
       return link;
-    }      
+    };      
   }
 
 };

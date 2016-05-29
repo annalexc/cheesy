@@ -5,7 +5,15 @@
       All Cheeses
     </span>
     <span ng-if="source">
-      Milk Source: {{ source }}
+      {{sourceLabel}}
+    </span>
+    <span ng-if="type">
+      <span class="carat"> > </span>
+      {{ typeLabel }}
+    </span>
+    <span ng-if="country">
+      <span class="carat"> > </span>
+      {{ country }}
     </span>
   </div>
   <ul>
