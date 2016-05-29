@@ -99,7 +99,7 @@ function createCheeseWheel(elementId, data, countFunction, colorFunction, title,
   if (legendFunction != undefined){
     slices.on("mouseover",update_legend)
           .on("mouseout",remove_legend);
-    var legend = d3.select("#"+elementId+"_legend");
+    var legend = d3.select("#"+elementId+"-legend");
             
     function update_legend(d){
       legend.html(legendFunction(d));
@@ -224,7 +224,13 @@ function createCheeseWheel(elementId, data, countFunction, colorFunction, title,
     var str = $.parseHTML(string);
     // console.log(str);
 
-    if (str[0] && str[4] && str[8]) {
+    if (str[12]) {
+      var name = $(str[12]).text();
+
+      link = "name/" + name;
+      return link; 
+
+    } else if (str[0] && str[4] && str[8]) {
       var source = $(str[0]).text();
       source = source.toLowerCase(); 
       
@@ -233,7 +239,7 @@ function createCheeseWheel(elementId, data, countFunction, colorFunction, title,
       
       var country = $(str[8]).text();
 
-      link = source + "/" + type + "/" + country;
+      link = "search/"+ source + "/" + type + "/" + country;
       return link;
 
     } else if(str[0] && str[4]) {
@@ -243,13 +249,13 @@ function createCheeseWheel(elementId, data, countFunction, colorFunction, title,
       var type = $(str[4]).text();
       type = type.toLowerCase();
 
-      link = source + "/" + type;
+      link = "search/"+ source + "/" + type;
       return link;
 
     } else if(str[0]) {
       var source = $(str[0]).text();
       source = source.toLowerCase();
-      link = source;
+      link = "search/"+ source;
       return link;
     };      
   }
@@ -263,7 +269,7 @@ function initCheeseWheel(){
     return d[1][0];
   };
     
-  function label_function(d){
+  function labelFunction(d){
     return d[2]+": "+d[4][0]+" cheeses";
   };
     
@@ -278,5 +284,5 @@ function initCheeseWheel(){
   }
   
   d3.select(self.frameElement).style("height", "800px");
-  createCheeseWheel("cheese_wheel",cheese_hierarchy,countFunction,colorFunction,label_function,legendFunction);
+  createCheeseWheel("cheese-wheel",cheeseHierarchy,countFunction,colorFunction,labelFunction,legendFunction);
 };

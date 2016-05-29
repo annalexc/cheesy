@@ -1,0 +1,24 @@
+<div id="cheese-list">
+  <div id="description">
+    <p id="section-title">Currently Viewing</p>
+    <span ng-if="!source">
+      All Cheeses
+    </span>
+    <span ng-if="source">
+      {{sourceLabel}}
+    </span>
+    <span ng-if="type">
+      <span class="carat"> > </span>
+      {{ typeLabel }}
+    </span>
+    <span ng-if="country">
+      <span class="carat"> > </span>
+      {{ country }}
+    </span>
+  </div>
+  <ul>
+    <li ng-repeat="cheese in cheeses">
+      {{ cheese.name }}
+    </li>
+  </ul>
+</div>

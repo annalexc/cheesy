@@ -1,24 +1,5 @@
-<div id="cheese-view">
-  <div id="list-description">
-    <p id="section-title">Currently Viewing</p>
-    <span ng-if="!source">
-      All Cheeses
-    </span>
-    <span ng-if="source">
-      {{sourceLabel}}
-    </span>
-    <span ng-if="type">
-      <span class="carat"> > </span>
-      {{ typeLabel }}
-    </span>
-    <span ng-if="country">
-      <span class="carat"> > </span>
-      {{ country }}
-    </span>
-  </div>
-  <ul>
-    <li ng-repeat="cheese in cheeses">
-      <a href='#/{{cheese.name}}'>{{ cheese.name }}</a>
-    </li>
-  </ul>
+<div id="message">
+  <h1 class="message-text">Click on the</h1> 
+  <h1 class="secondary-font">cheese wheel</h1>
+  <h1 class="message-text-lower">to begin.</h1>
 </div>

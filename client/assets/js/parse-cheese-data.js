@@ -1,4 +1,4 @@
-var cheese_hierarchy = [];
+var cheeseHierarchy = [];
 var cheeseData;
 var cheeseMilkSources;
 var cheeseTypes;
@@ -45,17 +45,17 @@ function parseCheeseData(cheeses, milkSources, types, countries, callback){
   callback = callback || function(){};
   var count;
   // console.log(milkSources);
-  cheese_hierarchy.push("All Cheeses");
-  cheese_hierarchy.push([cheeses.length]);
-  cheese_hierarchy.push({});
+  cheeseHierarchy.push("All Cheeses");
+  cheeseHierarchy.push([cheeses.length]);
+  cheeseHierarchy.push({});
    
    // Loop through the cheese milk sources
    for(var i=0; i<milkSources.length; i++){
  
-      cheese_hierarchy[2][milkSources[i]]= new Array;
-      cheese_hierarchy[2][milkSources[i]].push("<span class='source'>"+ capitalize(milkSources[i]) +"</span>'s milk");
-      cheese_hierarchy[2][milkSources[i]].push([getCount("milk_source",milkSources[i])]);
-      cheese_hierarchy[2][milkSources[i]].push({});
+      cheeseHierarchy[2][milkSources[i]]= new Array;
+      cheeseHierarchy[2][milkSources[i]].push("<span class='source'>"+ capitalize(milkSources[i]) +"</span>'s milk");
+      cheeseHierarchy[2][milkSources[i]].push([getCount("milk_source",milkSources[i])]);
+      cheeseHierarchy[2][milkSources[i]].push({});
       
       // Loop through the cheese types for a given milk source
       for(var j=0; j<types.length; j++){
@@ -63,27 +63,27 @@ function parseCheeseData(cheeses, milkSources, types, countries, callback){
         countWType = getCount("milk_source",milkSources[i],"type",types[j]);
         // console.log("count for", milkSources[i], "and type", types[j], "is",count);
         if (countWType > 0){
-          cheese_hierarchy[2][milkSources[i]][2][types[j]] = new Array;
-          cheese_hierarchy[2][milkSources[i]][2][types[j]].push("<span class='source'>"+ capitalize(milkSources[i]) +"</span>'s milk <span class='carat'>></span> <span class='type'>" + capitalize(types[j])+"</span>");
-          cheese_hierarchy[2][milkSources[i]][2][types[j]].push([countWType]);
-          cheese_hierarchy[2][milkSources[i]][2][types[j]].push({});
+          cheeseHierarchy[2][milkSources[i]][2][types[j]] = new Array;
+          cheeseHierarchy[2][milkSources[i]][2][types[j]].push("<span class='source'>"+ capitalize(milkSources[i]) +"</span>'s milk <span class='carat'>></span> <span class='type'>" + capitalize(types[j])+"</span>");
+          cheeseHierarchy[2][milkSources[i]][2][types[j]].push([countWType]);
+          cheeseHierarchy[2][milkSources[i]][2][types[j]].push({});
 
 
           for(var k=0; k<countries.length; k++){
             countWCountry = getCount("milk_source",milkSources[i],"type",types[j],"country",countries[k]);
             if (countWCountry > 0){
-              cheese_hierarchy[2][milkSources[i]][2][types[j]][2][countries[k]] = new Array;
-              cheese_hierarchy[2][milkSources[i]][2][types[j]][2][countries[k]].push("<span class='source'>"+ capitalize(milkSources[i]) +"</span>'s milk <span class='carat'>></span> <span class='type'>" + capitalize(types[j]) +"</span> <span class='carat'>></span> <span class='country'>" + countries[k] + "</span>");
-              cheese_hierarchy[2][milkSources[i]][2][types[j]][2][countries[k]].push([countWCountry]);
-              cheese_hierarchy[2][milkSources[i]][2][types[j]][2][countries[k]].push({});
+              cheeseHierarchy[2][milkSources[i]][2][types[j]][2][countries[k]] = new Array;
+              cheeseHierarchy[2][milkSources[i]][2][types[j]][2][countries[k]].push("<span class='source'>"+ capitalize(milkSources[i]) +"</span>'s milk <span class='carat'>></span> <span class='type'>" + capitalize(types[j]) +"</span> <span class='carat'>></span> <span class='country'>" + countries[k] + "</span>");
+              cheeseHierarchy[2][milkSources[i]][2][types[j]][2][countries[k]].push([countWCountry]);
+              cheeseHierarchy[2][milkSources[i]][2][types[j]][2][countries[k]].push({});
 
 
               cheeseSubset = getCheeseSubset("milk_source",milkSources[i],"type",types[j],"country",countries[k]);
               for(var l=0; l<cheeseSubset.length; l++){
-                cheese_hierarchy[2][milkSources[i]][2][types[j]][2][countries[k]][2][cheeseSubset[l].name] = new Array;
-                cheese_hierarchy[2][milkSources[i]][2][types[j]][2][countries[k]][2][cheeseSubset[l].name].push("<span class='source'>"+ capitalize(milkSources[i]) +"</span>'s milk <span class='carat'>></span> " + capitalize(types[j]) +" <span class='carat'>></span> " + countries[k] +" <span class='carat'>></span> " + cheeseSubset[l].name);
-                cheese_hierarchy[2][milkSources[i]][2][types[j]][2][countries[k]][2][cheeseSubset[l].name].push("1");
-                cheese_hierarchy[2][milkSources[i]][2][types[j]][2][countries[k]][2][cheeseSubset[l].name].push({});
+                cheeseHierarchy[2][milkSources[i]][2][types[j]][2][countries[k]][2][cheeseSubset[l].name] = new Array;
+                cheeseHierarchy[2][milkSources[i]][2][types[j]][2][countries[k]][2][cheeseSubset[l].name].push("<span class='source'>"+ capitalize(milkSources[i]) +"</span>'s milk <span class='carat'>></span> <span class='type'>" + capitalize(types[j]) +"</span> <span class='carat'>></span> <span class='country'>" + countries[k] +"</span> <span class='carat'>></span> <span class='name'>" + cheeseSubset[l].name + "</span>");
+                cheeseHierarchy[2][milkSources[i]][2][types[j]][2][countries[k]][2][cheeseSubset[l].name].push("1");
+                cheeseHierarchy[2][milkSources[i]][2][types[j]][2][countries[k]][2][cheeseSubset[l].name].push({});
               };
             };
           };
@@ -91,8 +91,8 @@ function parseCheeseData(cheeses, milkSources, types, countries, callback){
       };
    };
 
-  // console.log(JSON.stringify(cheese_hierarchy));
-   // console.log(cheese_hierarchy);
+  // console.log(JSON.stringify(cheeseHierarchy));
+   // console.log(cheeseHierarchy);
    callback();
 };
 

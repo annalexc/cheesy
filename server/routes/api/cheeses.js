@@ -81,9 +81,6 @@ router.get('/cheese/:id', function(req, res, next){
 });
 
 
-
-
-
 // GET ALL MILK SOURCES
 router.get('/getdistinct/:attribute', function(req, res, next){
   var attr = req.params.attribute;
@@ -96,13 +93,10 @@ router.get('/getdistinct/:attribute', function(req, res, next){
   })
 });
 
-
-
-
-// GET CHEESES FOR A GIVEN MILK SOURCE
-router.get('/source/:source', function(req, res, next){
-  var source = req.params.source;
-  Cheese.find({milk_source: source}, function(err, response){
+// GET CHEESE BY NAME
+router.get('/name/:name', function(req, res, next){
+  var name = req.params.name;
+  Cheese.find({name: name}, function(err, response){
     if (err) {
       res.status(404).end();
     }else {
@@ -110,8 +104,6 @@ router.get('/source/:source', function(req, res, next){
     }
   })
 });
-
-
 
 
 // POST NEW cheese
@@ -129,7 +121,6 @@ router.post('/', function(req, res, next){
 
 // PUT
 router.put('/:id', function(req, res, next){
-  console.log('Updating!!!!!!!');
   var id = req.params.id;
   cheese.findByIdAndUpdate(id, req.body.cheese, function(err, cheese){
     if (!req.body.cheese) {

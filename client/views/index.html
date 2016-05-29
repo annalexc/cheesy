@@ -16,17 +16,26 @@
   </head>
   <body>
 
+
+  <div id="top-border"></div>
+  <div id="right-border"></div>
+  <div id="bottom-border"></div>
+  <div id="left-border"></div>
   <div id="title">
     <div id="title-text">Cheese<br />Wheel</div>
   </div>
+
+  <!-- <div id="site-border"></div> -->
   <div id="site-wrapper">
-    <div id="search-pane" ng-app="CheesyDB">
-      <div id="cheese-list" ng-view>
-      </div>
-    </div>
+    
     <div id="view-pane">
-      <div id="cheese_wheel_legend"></div>
-      <div id="cheese_wheel">&nbsp;</div>
+      <div id="cheese-wheel-legend"></div>
+      <div id="cheese-wheel">&nbsp;</div>
+    </div>
+
+    <div id="search-pane" ng-app="CheesyDB">
+      <div id="display-pane" ng-view>
+      </div>
     </div>
   </div>
 
