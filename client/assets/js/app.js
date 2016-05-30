@@ -19,14 +19,18 @@ app.config(['$routeProvider', function($routeProvider){
     templateUrl: 'views/templates/cheese-list.html',
     controller: 'CheeseController'
   })
-  .when('/name/:name', {
-    templateUrl: 'views/templates/cheese-details.html',
-    controller: 'CheeseDetailsController'
-  })
   .when('/no-results', {
     templateUrl: 'views/templates/no-results.html',
     controller: 'CheeseController'
   })
+  .when('/:id', {
+    templateUrl: 'views/templates/cheese-details.html',
+    controller: 'CheeseDetailsController'
+  })
+  .when('/name/:name', {
+    templateUrl: 'views/templates/cheese-details.html',
+    controller: 'CheeseDetailsController'
+  })  
   .otherwise({
     redirectTo: '/'
   })
@@ -58,10 +62,10 @@ app.controller('CheeseController', ['$scope', '$routeParams', '$http', '$window'
     $scope.sourceLabel = capitalize($scope.source) + "'s Milk";
     $scope.typeLabel = capitalize($scope.type);
 
-    $http.get('/api/cheeses/search?source='+$scope.source +'&type='+ $scope.type +'&country='+$scope.country).then(function(response){
-      console.log(response);
-      $scope.cheeses = response.data;  
-      if($scope.cheeses.length == 0){
+    $http.get('/api/cheeses/search?source='+$scope.source +'&type='+ $scope.type +'&country='+$scope.country).then(function(response){  
+      if(response.data.length){
+        $scope.cheeses = response.data;  
+      } else {
         $scope.redirectToNoResults();
       };
     });
@@ -71,18 +75,19 @@ app.controller('CheeseController', ['$scope', '$routeParams', '$http', '$window'
     $scope.typeLabel = capitalize($scope.type);
 
     $http.get('/api/cheeses/search?source='+$scope.source +'&type='+ $scope.type).then(function(response){
-      console.log(response);
-      $scope.cheeses = response.data;
-      if($scope.cheeses.length == 0){
+      // console.log(response);
+      if(response.data.length){
+        $scope.cheeses = response.data;
+      } else{
         $scope.redirectToNoResults();
       };     
     });
   } else if($scope.source){
     $scope.sourceLabel = capitalize($scope.source) + "'s Milk";
     $http.get('/api/cheeses/search?source='+$scope.source).then(function(response){
-      console.log(response);
-      $scope.cheeses = response.data; 
-      if($scope.cheeses.length == 0){
+      if(response.data.length){
+        $scope.cheeses = response.data;
+      } else{
         $scope.redirectToNoResults();
       };    
     });
@@ -96,26 +101,39 @@ app.controller('CheeseController', ['$scope', '$routeParams', '$http', '$window'
 
 app.controller('CheeseDetailsController', ['$scope', '$routeParams', '$http', '$window', function( $scope, $routeParams, $http, $window ) {
 
-
+  $scope.id = $routeParams.id;
   $scope.name = $routeParams.name;
   $scope.cheese;
-
-
-
-  $http.get('/api/cheeses/name/'+$scope.name).then(function(response){
-    // console.log(response.data.length)
-    
-    if(response.data.length == 0 ){
-      $scope.redirectToNoResults();
-    } else {
-      $scope.cheese = response.data[0];
-      $scope.source = capitalize($scope.cheese.milk_source);
-      $scope.type = capitalize($scope.cheese.type);
-    }
-    console.log($scope.cheese); 
-    
-  });
   
+  if($scope.name){
+    // If cheese name is defined
+    $http.get('/api/cheeses/name/'+$scope.name).then(function(response){
+      if(response.data.length){
+        $scope.cheese = response.data[0];
+        $scope.source = capitalize($scope.cheese.milk_source);
+        $scope.type = capitalize($scope.cheese.type);       
+      } else {
+        $scope.redirectToNoResults();  
+      }
+      // console.log($scope.cheese); 
+    });
+  } else if ($scope.id) {
+
+    // console.log($scope.id);
+
+    // If cheese id is defined
+    $http.get('/api/cheeses/'+ $scope.id).then(function(response){
+      console.log(response);
+      if(response.data){
+        $scope.cheese = response.data;
+        $scope.source = capitalize($scope.cheese.milk_source);
+        $scope.type = capitalize($scope.cheese.type);
+      } else {
+        $scope.redirectToNoResults();
+      }
+      console.log($scope.cheese); 
+    });
+  };
 
   $scope.redirectToNoResults = function(){
     $window.location.href = '/#/no-results';

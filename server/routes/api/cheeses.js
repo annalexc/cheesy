@@ -69,8 +69,9 @@ router.get('/search', function(req, res, next){
 
 
 // GET SINGLE CHEESOURCE
-router.get('/cheese/:id', function(req, res, next){
+router.get('/:id', function(req, res, next){
   var id = req.params.id;
+  console.log(id);
   Cheese.findById(id, function(err, response){
     if (err) {
       res.status(404).end();
