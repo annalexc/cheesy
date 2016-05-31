@@ -1,21 +1,21 @@
 $(function(){
-  setCheeseHierarchy();
-  window.onresize = initCheeseWheel;
   $('#title').css({
     'margin-top': '0%'
-    });
-
+  });
+  checkWidth();
+  setCheeseHierarchy();
+  window.onresize = initCheeseWheel;
+  
   $('#cheese-img').css({
     'opacity': '0'
     });
 
-  checkWidth();
+  setTimeout(function(){
+    titleSlide();
+  }, 1800, "linear");
 
   setTimeout(function(){
-    titleSlide()
-  }, 1800, "linear");
-  setTimeout(function(){
-    cheeseFade()
+    cheeseFade();
   }, 1800);
 
 });
