@@ -9,6 +9,8 @@ $(function(){
     'opacity': '0'
     });
 
+  checkWidth();
+
   setTimeout(function(){
     titleSlide()
   }, 1800, "linear");
@@ -18,9 +20,12 @@ $(function(){
 
 });
 
+var $window = $(window);
+var marginTop;
+
 function titleSlide(){
   $('#title').animate({
-    'margin-top': '-100%'
+    'margin-top': marginTop
   }, 2500);
 };
 
@@ -29,3 +34,17 @@ function cheeseFade(){
     'opacity': '0.5'
   }, 2500);
 };
+
+
+function checkWidth(){
+  var windowSize = $window.width();
+  if (windowSize < 570) {
+     marginTop = '-179%';
+  } else if (windowSize < 780) {
+    marginTop = '-150%';
+  } else {
+    marginTop = '-100%';
+  }
+};
+
+// $(window).resize(checkWidth);

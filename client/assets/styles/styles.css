@@ -294,3 +294,147 @@ h3 {
     from { opacity: 0; }
     to   { opacity: 1; }
 }
+
+
+@media all and (max-width:780px) {
+  #title {
+    font-family: 'Ostrich Sans Bold';
+    font-size: 6rem;
+  }
+
+  #title-text {
+    line-height: 0.9;
+    border: 4px solid black;
+    padding: 61px 37px;
+    animation: spinIn 1.25s linear;
+    background-size: 1.85em 1.85em;
+  }
+
+  #view-pane {
+    width: 100%;
+    height: 55%;
+  }
+
+  #search-pane {
+    width: 100%;
+    max-height: 45%;
+  }
+  #cheese-wheel {
+    position: relative;
+    width: 50%;
+    padding-top: 12%;
+    margin: 0 auto;
+  }
+
+  #cheese-wheel-legend {
+    position: absolute;
+    padding-right: 5%;
+    top: 0;
+    width: 95%;
+    margin: 0 auto;
+    height: 10%;
+    text-align: left;
+    font-size: 0.8rem;
+  }
+  #message {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+  }
+  .message-text, .message-text-lower {
+   font: 2.85rem 'Bree Serif'; 
+   margin: 0 auto;
+  }
+
+  .message-text-lower{
+    margin-top: -17px;
+  }
+
+  .secondary-font{
+    font: 3.25rem 'Ostrich Sans Bold';
+    margin: 0 auto;
+    color: tomato;
+    line-height: 1;
+  }
+  #cheese-img img {
+    display: none;
+  }
+}
+
+
+@media all and (max-width:630px) {
+  #cheese-wheel {
+    position: relative;
+    width: 56%;
+    padding-top: 12%;
+    margin: 0 auto;
+  }
+  
+  #message {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+  }
+  .message-text, .message-text-lower {
+   font: 2.85rem 'Bree Serif'; 
+   margin: 0 auto;
+  }
+
+  .message-text-lower{
+    margin-top: -17px;
+  }
+
+  .secondary-font{
+    font: 3.25rem 'Ostrich Sans Bold';
+    margin: 0 auto;
+    color: tomato;
+    line-height: 1;
+  }
+
+  #section-title {
+  font: 1.85rem 'Ostrich Sans Bold';
+}
+
+  #description {
+    padding-bottom: 5px;
+    border-bottom: 3px solid rgba(0,0,0,0.5);
+  }
+
+  #description span{
+    font: 1.35rem 'Oswald';
+  }
+
+  .cheese-name {
+    margin-top: 10px;
+    font-size: 1.25rem;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    margin: 3px auto;
+  }
+  .small {
+    border-top: 1px solid rgba(0,0,0,0.3);
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+    color: rgb(255,182,46);
+    font-size: 1rem;
+    padding: 1% 0;
+  }
+
+
+}
+
+@media all and (max-width:450px) {
+  #title {
+    font-family: 'Ostrich Sans Bold';
+    font-size: 6rem;
+  }
+
+   #cheese-wheel {
+    position: relative;
+    width: 80%;
+    padding-top: 20%;
+    margin: 0 auto;
+  }
+
+}
