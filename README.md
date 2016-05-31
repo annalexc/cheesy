@@ -1,4 +1,4 @@
-## Cheese Wheel
+## Feelin' Cheesy (Cheese Wheel)
 
 Get cheesy **[here](https://cheese-wheel.herokuapp.com/#/)**.
 
