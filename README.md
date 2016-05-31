@@ -9,3 +9,5 @@ Cheese wheel is a **MEAN stack** web application that uses a [d3.js](d3js.org) z
   - **Level 3**: Each arc represents a country of origin per given cheese type and milk source
   - **Level 4**: Each arc represents a single cheese item per given country of origin, type, and milk source
 
+![Feelin' Cheesy](http://i.giphy.com/12kWhfDo5lxkmQ.gif)
+
