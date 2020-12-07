@@ -4,10 +4,10 @@ var express         = require('express'),
     mongoose        = require('mongoose'),
     bodyParser      = require('body-parser'),
     app             = express(),
-    apiCheeseRouter = require('./server/routes/api/cheeses.js');
+    apiCheeseRouter = require('./server/routes/api/cheeses.js'),
+    uri = process.env.MONGODB_URI || "mongodb://localhost/cheesy";
 
-
-mongoose.connect( process.env.MONGODB_URI || "mongodb://localhost/cheesy" );
+mongoose.connect( uri );
 
 
 app.set('views', path.join(__dirname, 'client/views'));
