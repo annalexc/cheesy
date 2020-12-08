@@ -2,9 +2,11 @@ var seeder = require("mongoose-seed");
 
 var uri = process.env.MONGODB_URI || "mongodb://localhost/cheesy";
 
-seeder.connect(uri, function () {
+seeder.connect(uri,  { useNewUrlParser: true, useUnifiedTopology: true }, function () {
     seeder.loadModels(['./server/models/cheese']);
-    seeder.clearModels(['Cheese']);
+    seeder.clearModels(['Cheese'], function(){
+      // noop
+    });
 
     seeder.populateModels(data, function(err, done) {
       if (err) {
@@ -12,8 +14,8 @@ seeder.connect(uri, function () {
         return;
       } else if (done) {
         console.log('Seeding complete.');
-        seeder.disconnect();
       }
+      seeder.disconnect();
     });
 });
 
