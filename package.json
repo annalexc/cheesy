@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild":  "node seed.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +15,7 @@
     "express": "^4.17.1",
     "mongo-migrate": "^0.1.0",
     "mongoose": "^5.0.0",
+    "mongoose-seed": "^0.6.0",
     "morgan": "^1.10.0",
     "nodemon": "^1.9.2",
     "path": "^0.12.7"
