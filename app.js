@@ -7,7 +7,7 @@ var express         = require('express'),
     apiCheeseRouter = require('./server/routes/api/cheeses.js'),
     uri = process.env.MONGODB_URI || "mongodb://localhost/cheesy";
 
-mongoose.connect( uri );
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 app.set('views', path.join(__dirname, 'client/views'));
